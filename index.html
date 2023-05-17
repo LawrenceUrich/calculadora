@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Minha calculadora</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora Simples</h1>
+
+        <div class="calculator">
+            <div class="display">
+                <input id="display" type="text" readonly>
+            </div>
+
+            <div class="keypad">
+                <button onclick="appendNumber(7)">7</button>
+                <button onclick="appendNumber(8)">8</button>
+                <button onclick="appendNumber(9)">9</button>
+                <button onclick="appendNumber(4)">4</button>
+                <button onclick="appendNumber(5)">5</button>
+                <button onclick="appendNumber(6)">6</button>
+                <button onclick="appendNumber(1)">1</button>
+                <button onclick="appendNumber(2)">2</button>
+                <button onclick="appendNumber(3)">3</button>
+                <button onclick="appendNumber(0)">0</button>
+                <button onclick="appendNumber('.')">.</button>
+                <button onclick="clearDisplay()">C</button>
+            </div>
+
+            <div class="operations">
+                <button onclick="performOperation('+')">+</button>
+                <button onclick="performOperation('-')">-</button>
+                <button onclick="performOperation('*')">*</button>
+                <button onclick="performOperation('/')">/</button>
+                <button onclick="calculateResult()">=</button>
+            </div>
+
+            <div class="result">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var display = document.getElementById('display');
+        var equation = '';
+
+        function appendNumber(number) {
+            equation += number;
+            display.value = equation;
+        }
+
+        function clearDisplay() {
+            equation = '';
+            display.value = equation;
+        }
+
+        function performOperation(operator) {
+            equation += operator;
+            display.value = equation;
+        }
+
+        function calculateResult() {
+            try {
+                var result = eval(equation);
+                display.value = result;
+                equation = result.toString();
+            } catch (error) {
+                display.value = 'Erro';
+                equation = '';
+            }
+        }
+    </script>
+</body>
+</html>
